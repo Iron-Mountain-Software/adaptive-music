@@ -1,5 +1,5 @@
 # Adaptive Music
-*Version: 1.0.2*
+*Version: 1.0.3*
 ## Description: 
 A system for playing music at various predefined intensities.
 ## Package Mirrors: 
@@ -10,7 +10,7 @@ A system for playing music at various predefined intensities.
    * Properties: 
       * public String ***DisplayName***  { get; }
       * public AudioMixerGroup ***AudioMixerGroup***  { get; }
-      * public List<Stem> ***Stems***  { get; }
+      * public List<AdaptiveStem> ***Stems***  { get; }
 1. public class **SongPlayer** : MonoBehaviour
    * Actions: 
       * public event Action ***OnSongChanged*** 
@@ -30,15 +30,11 @@ A system for playing music at various predefined intensities.
       * public void ***FadeIn***(float fadeInSeconds, Action onComplete)
       * public void ***FadeOut***(float fadeOutSeconds, Action onComplete)
 1. public static class **SongPlayersManager**
-1. public class **Stem** : ScriptableObject
-   * Properties: 
-      * public List<AudioClip> ***AudioClips***  { get; }
-      * public AnimationCurve ***Volumes***  { get; }
 1. public class **StemPlayer** : MonoBehaviour
    * Properties: 
       * public AudioSource ***AudioSource***  { get; }
    * Methods: 
-      * public void ***Initialize***(SongPlayer songPlayer, Stem stem, AudioMixerGroup audioMixerGroup)
+      * public void ***Initialize***(SongPlayer songPlayer, AdaptiveStem stem, AudioMixerGroup audioMixerGroup)
       * public void ***Play***()
       * public void ***Pause***()
       * public void ***Resume***()
@@ -48,3 +44,17 @@ A system for playing music at various predefined intensities.
 1. public class **CurrentMusicIntensityText** : MonoBehaviour
 1. public static class **MusicIntensitySettings**
 1. public class **MusicIntensitySlider** : MonoBehaviour
+### Stems
+1. public abstract class **AdaptiveStem** : ScriptableObject
+   * Properties: 
+      * public AnimationCurve ***Volumes***  { get; }
+   * Methods: 
+      * public abstract AudioClip ***GetAudioClip***()
+1. public class **BasicAdaptiveStem** : AdaptiveStem
+   * Methods: 
+      * public override AudioClip ***GetAudioClip***()
+1. public class **RandomAdaptiveStem** : AdaptiveStem
+   * Properties: 
+      * public List<AudioClip> ***AudioClips***  { get; }
+   * Methods: 
+      * public override AudioClip ***GetAudioClip***()

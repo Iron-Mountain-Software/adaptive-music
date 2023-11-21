@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using IronMountain.AdaptiveMusic.Stems;
 using UnityEngine;
 
 namespace IronMountain.AdaptiveMusic
@@ -100,7 +101,7 @@ namespace IronMountain.AdaptiveMusic
         private void CreateStemPlayers()
         {
             if (!Song) return;
-            foreach (Stem stem in Song.Stems)
+            foreach (Stems.AdaptiveStem stem in Song.Stems)
             {
                 if (!stem) continue;
                 GameObject instantiatedObject = new GameObject(stem.name, typeof(StemPlayer));

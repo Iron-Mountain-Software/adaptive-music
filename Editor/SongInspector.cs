@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using IronMountain.AdaptiveMusic.Stems;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,12 +10,12 @@ namespace IronMountain.AdaptiveMusic.Editor
     {
         private Song _song;
         private SerializedObject _serializedSong;
-        private Dictionary<Stem, UnityEditor.Editor> _cachedEditors = new ();
+        private readonly Dictionary<AdaptiveStem, UnityEditor.Editor> _cachedEditors = new ();
 
-        private static Stem AddStemToSong(Song song)
+        private static AdaptiveStem AddStemToSong<T>(Song song) where T : AdaptiveStem
         {
             if (!song) return null;
-            Stem stem = CreateInstance(typeof(Stem)) as Stem;
+            T stem = CreateInstance(typeof(T)) as T;
             if (!stem || string.IsNullOrEmpty(AssetDatabase.GetAssetPath(song))) return null;
             AssetDatabase.AddObjectToAsset(stem, song);
             AssetDatabase.SaveAssets();
@@ -49,16 +50,22 @@ namespace IronMountain.AdaptiveMusic.Editor
         private void DrawAddStemButton()
         {
             GUILayout.Space(6);
-            if (GUILayout.Button("Add Stem", GUILayout.Height(25)))
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Add Basic Stem", GUILayout.Height(25)))
             {
-                _song.Stems.Add(AddStemToSong(_song));
+                _song.Stems.Add(AddStemToSong<BasicAdaptiveStem>(_song));
             }
+            if (GUILayout.Button("Add Random Stem", GUILayout.Height(25)))
+            {
+                _song.Stems.Add(AddStemToSong<RandomAdaptiveStem>(_song));
+            }
+            EditorGUILayout.EndHorizontal();
         }
 
         private void DrawStems()
         {
             EditorGUILayout.BeginVertical();
-            foreach (Stem stem in _song.Stems)
+            foreach (AdaptiveStem stem in _song.Stems)
             {
                 if (!stem) continue;
                 UnityEditor.Editor cachedEditor = _cachedEditors.ContainsKey(stem)

@@ -1,12 +1,13 @@
+using IronMountain.AdaptiveMusic.Stems;
 using UnityEditor;
 using UnityEngine;
 
 namespace IronMountain.AdaptiveMusic.Editor
 {
-    [CustomEditor(typeof(Stem), true)]
+    [CustomEditor(typeof(AdaptiveStem), true)]
     public class StemInspector : StyledInspector
     {
-        private Stem _stem;
+        private AdaptiveStem _stem;
         private bool _expanded;
         
         private readonly Rect _defaultVolumeBounds = new (0, 0, 1, 1);
@@ -14,22 +15,18 @@ namespace IronMountain.AdaptiveMusic.Editor
         protected override void OnEnable()
         {
             base.OnEnable();
-            if (!_stem && target) _stem = (Stem) target;
+            if (!_stem && target) _stem = (AdaptiveStem) target;
         }
 
         public override void OnInspectorGUI()
         {
-            if (!_stem && target) _stem = (Stem) target;
+            if (!_stem && target) _stem = (AdaptiveStem) target;
             
             GUILayout.Space(6);
             GUILayout.BeginVertical(Container);
             GUILayout.BeginHorizontal();
-
-            SerializedProperty audioClips = serializedObject.FindProperty("audioClips");
-
+            
             string label = _stem.name;
-            if (audioClips.arraySize == 0) label += " (No AudioClips!)";
-            else if (audioClips.arraySize > 1) label += " (" + audioClips.arraySize + ")";
             
             GUILayout.Label(label, H2);
             if (GUILayout.Button("Edit", GUILayout.Width(50)))
@@ -50,17 +47,13 @@ namespace IronMountain.AdaptiveMusic.Editor
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("volumes"));
                 GUILayout.Space(4);
                 EditorGUI.indentLevel++;
-                EditorGUILayout.PropertyField(audioClips);
+                DrawPropertiesExcluding(serializedObject, "m_Script", "volumes");
                 EditorGUI.indentLevel--;
             }
             else
             {
                 EditorGUI.BeginDisabledGroup(true);
-                EditorGUILayout.CurveField(serializedObject.FindProperty("volumes"), Color.cyan, _defaultVolumeBounds, GUIContent.none);
-                for (int i = 0; i < audioClips.arraySize; i++)
-                {
-                    EditorGUILayout.ObjectField(audioClips.GetArrayElementAtIndex(i), GUIContent.none);
-                }
+                EditorGUILayout.CurveField(serializedObject.FindProperty("volumes"), Color.cyan, _defaultVolumeBounds, GUIContent.none, GUILayout.Height(40));
                 EditorGUI.EndDisabledGroup();
             }
             GUILayout.EndVertical();

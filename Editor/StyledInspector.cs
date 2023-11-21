@@ -15,7 +15,7 @@ namespace IronMountain.AdaptiveMusic.Editor
             containerTexture.Apply();
             Container = new GUIStyle
             {
-                padding = new RectOffset(5, 5, 5, 5),
+                padding = new RectOffset(7, 7, 7, 7),
                 normal = new GUIStyleState
                 {
                     background = containerTexture

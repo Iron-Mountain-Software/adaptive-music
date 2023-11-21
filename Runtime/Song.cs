@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using IronMountain.AdaptiveMusic.Stems;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -10,11 +11,11 @@ namespace IronMountain.AdaptiveMusic
     {
         [SerializeField] private string displayName;
         [SerializeField] private AudioMixerGroup audioMixerGroup;
-        [SerializeField] private List<Stem> stems = new ();
+        [SerializeField] private List<Stems.AdaptiveStem> stems = new ();
         
         public string DisplayName => displayName;
         public AudioMixerGroup AudioMixerGroup => audioMixerGroup;
-        public List<Stem> Stems => stems;
+        public List<Stems.AdaptiveStem> Stems => stems;
 
 #if UNITY_EDITOR
 

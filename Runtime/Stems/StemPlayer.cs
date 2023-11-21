@@ -1,5 +1,6 @@
 using System.Collections;
 using IronMountain.AdaptiveMusic.Intensity;
+using IronMountain.AdaptiveMusic.Stems;
 using UnityEngine;
 using UnityEngine.Audio;
 using Random = UnityEngine.Random;
@@ -14,7 +15,7 @@ namespace IronMountain.AdaptiveMusic
         [Header("Cache")]
         private SongPlayer _songPlayer;
         private AudioSource _audioSource;
-        private Stem _stem;
+        private Stems.AdaptiveStem _stem;
 
         public AudioSource AudioSource
         {
@@ -37,7 +38,7 @@ namespace IronMountain.AdaptiveMusic
             }
         }
 
-        public void Initialize(SongPlayer songPlayer, Stem stem, AudioMixerGroup audioMixerGroup)
+        public void Initialize(SongPlayer songPlayer, Stems.AdaptiveStem stem, AudioMixerGroup audioMixerGroup)
         {
             _stem = stem;
             SongPlayer = songPlayer;
@@ -101,8 +102,8 @@ namespace IronMountain.AdaptiveMusic
 
         public void Play()
         {
-            if (!AudioSource || !_stem || _stem.AudioClips.Count == 0) return;
-            AudioSource.clip = _stem.AudioClips[Random.Range(0, _stem.AudioClips.Count)];
+            if (!AudioSource || !_stem) return;
+            AudioSource.clip = _stem.GetAudioClip();
             AudioSource.Play();
             RefreshVolume();
         }
