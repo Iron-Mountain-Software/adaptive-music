@@ -1,6 +1,6 @@
 {
   "name": "com.iron-mountain.adaptive-music",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Adaptive Music",
   "author": "Chris Monteferrante <ludachrismonte@gmail.com>",
   "unity": "2019.1",
@@ -30,6 +30,10 @@
     {
       "type": "itch.io",
       "url": "https://iron-mountain.itch.io/adaptive-music"
+    },
+    {
+      "type": "npm",
+      "url": "https://www.npmjs.com/package/com.iron-mountain.adaptive-music"
     }
   ],
   "dependencies": {}
