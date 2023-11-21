@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 
 namespace IronMountain.AdaptiveMusic
 {
-    [CreateAssetMenu(menuName = "Scriptable Objects/Gameplay/Audio/Music/Song")]
+    [CreateAssetMenu(menuName = "Scriptable Objects/Adaptive Music/Song")]
     public class Song : ScriptableObject
     {
         [SerializeField] private string displayName;

@@ -6,6 +6,8 @@ namespace IronMountain.AdaptiveMusic
 {
     public class Stem : ScriptableObject
     {
+        public const int VolumeSteps = 10;
+        
         [SerializeField] private List<AudioClip> audioClips = new ();
         [SerializeField] [VolumeEditor] private AnimationCurve volumes;
         
@@ -15,9 +17,9 @@ namespace IronMountain.AdaptiveMusic
         private void Reset()
         {
             volumes = new AnimationCurve();
-            for (int level = 0; level <= MusicIntensitySettings.MaximumIntensityLevel; level++)
+            for (int level = 0; level <= VolumeSteps; level++)
             {
-                float value = (float) level / MusicIntensitySettings.MaximumIntensityLevel;
+                float value = (float) level / VolumeSteps;
                 volumes.AddKey(value, Mathf.Lerp(0, 1, value));
             }
         }
@@ -27,7 +29,6 @@ namespace IronMountain.AdaptiveMusic
         private void OnValidate()
         {
             RefreshName();
-            CorrectVolumes();
         }
         
         [ContextMenu("Refresh Name")]
@@ -38,28 +39,6 @@ namespace IronMountain.AdaptiveMusic
                 : name;
         }
 
-        [ContextMenu("Correct Volumes")]
-        private void CorrectVolumes()
-        {
-            while (volumes.keys.Length > MusicIntensitySettings.MaximumIntensityLevel + 1)
-                volumes.RemoveKey(volumes.keys.Length - 1);
-            float[] values = new float[volumes.keys.Length];
-            for (int i = 0; i < volumes.keys.Length; i++)
-                values[i] = volumes.keys[i].value;
-            while (volumes.keys.Length > 0)
-                volumes.RemoveKey(0);
-            for (int i = 0; i < values.Length; i++)
-                volumes.AddKey(new Keyframe(
-                    (float) i / MusicIntensitySettings.MaximumIntensityLevel,
-                    Mathf.Clamp01(values[i]))
-                );
-            while (volumes.keys.Length < MusicIntensitySettings.MaximumIntensityLevel + 1)
-                volumes.AddKey(new Keyframe(
-                    (float) volumes.keys.Length / MusicIntensitySettings.MaximumIntensityLevel, 
-                    0)
-                );
-        }
-        
 #endif
         
     }
