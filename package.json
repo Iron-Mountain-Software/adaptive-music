@@ -6,14 +6,14 @@
   "unity": "2019.1",
   "type": "tool",
   "license": "MIT",
-  "homepage": "https://github.com/Iron-Mountain-Software/grass#readme",
+  "homepage": "https://github.com/Iron-Mountain-Software/adaptive-music#readme",
   "bugs": {
     "type": "git",
-    "url": "https://github.com/SpellBoundAR-Packages/grass/issues"
+    "url": "https://github.com/Iron-Mountain-Software/adaptive-music/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SpellBoundAR-Packages/grass.git"
+    "url": "git+https://github.com/Iron-Mountain-Software/adaptive-music.git"
   },
   "description": "A system for playing music at various predefined intensities.",
   "useCases": [],
@@ -22,5 +22,15 @@
     "vfx",
     "ui"
   ],
-  "sources": []
+  "sources": [
+    {
+      "type": "git",
+      "url": "https://github.com/Iron-Mountain-Software/adaptive-music.git"
+    },
+    {
+      "type": "itch.io",
+      "url": "https://iron-mountain.itch.io/adaptive-music"
+    }
+  ],
+  "dependencies": {}
 }

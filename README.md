@@ -1,7 +1,9 @@
 # Adaptive Music
 *Version: 1.0.0*
 ## Description: 
-A system for playing music at various predefined intensities. 
+A system for playing music at various predefined intensities.
+## Package Mirrors: 
+[<img src='https://img.itch.zone/aW1nLzEzNzQ2ODg3LnBuZw==/original/npRUfq.png'>](https://github.com/Iron-Mountain-Software/adaptive-music.git)[<img src='https://img.itch.zone/aW1nLzEzNzQ2ODk4LnBuZw==/original/Rv4m96.png'>](https://iron-mountain.itch.io/adaptive-music)
 ---
 ## Key Scripts & Components: 
 1. public class **Song** : ScriptableObject
