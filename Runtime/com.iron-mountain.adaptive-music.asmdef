@@ -1,0 +1,14 @@
+{
+    "name": "com.iron-mountain.adaptive-music",
+    "rootNamespace": "IronMountain.AdaptiveMusic",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

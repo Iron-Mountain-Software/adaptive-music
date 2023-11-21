@@ -1,0 +1,26 @@
+{
+  "name": "com.iron-mountain.adaptive-music",
+  "version": "1.0.0",
+  "displayName": "Adaptive Music",
+  "author": "Chris Monteferrante <ludachrismonte@gmail.com>",
+  "unity": "2019.1",
+  "type": "tool",
+  "license": "MIT",
+  "homepage": "https://github.com/Iron-Mountain-Software/grass#readme",
+  "bugs": {
+    "type": "git",
+    "url": "https://github.com/SpellBoundAR-Packages/grass/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpellBoundAR-Packages/grass.git"
+  },
+  "description": "A system for playing music at various predefined intensities.",
+  "useCases": [],
+  "directions": null,
+  "keywords": [
+    "vfx",
+    "ui"
+  ],
+  "sources": []
+}
